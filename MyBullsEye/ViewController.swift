@@ -15,13 +15,12 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentValue = lroundf(slider.value)
-        targetValue = Int.random(in: 1...100)
+        startNewRound()
     }
     
     @IBAction func showAlert() {
         let message = "The value of the slider is: \(currentValue)" +
-                      "\nThe target value is: \(targetValue)"
+          "\nThe target value is: \(targetValue)"
         
         let alert = UIAlertController(
             title: "Hello, World",
@@ -35,10 +34,18 @@ class ViewController: UIViewController {
         
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+        
+        startNewRound()
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
         currentValue = lroundf(slider.value)
+    }
+    
+    func startNewRound() {
+        targetValue = Int.random(in: 1...100)
+        currentValue = 75
+        slider.value = Float(currentValue)
     }
 }
 
